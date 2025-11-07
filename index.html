@@ -1,18 +1,17 @@
-html_content = r"""<!DOCTYPE html>
+html = r"""<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>FICHA DE MATRÍCULA Y ENTREVISTA 2026</title>
+<title>FICHA DE MATRÍCULA Y ENTREVISTA 2026 — Editable</title>
 <style>
-  /* Reset básico */
   *, *::before, *::after { box-sizing: border-box; }
   html, body { margin: 0; padding: 0; }
   body {
     font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     color: #111;
-    background: #f7f7f7;
-    line-height: 1.2;
+    background: #f5f6f8;
+    line-height: 1.25;
   }
   .sheet {
     width: 210mm;
@@ -27,132 +26,49 @@ html_content = r"""<!DOCTYPE html>
     body { background: #fff; }
     .sheet { margin: 0; box-shadow: none; border: none; page-break-after: always; }
     .no-print { display: none !important; }
+    input, textarea, select { border: none; border-bottom: 1px solid #555; }
   }
 
-  .hdr {
-    text-align: center;
-    margin-bottom: 8mm;
-  }
-  .hdr h1 {
-    font-size: 16pt;
-    margin: 0 0 2mm 0;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-  }
-  .hdr h2 {
-    font-size: 15pt;
-    margin: 0;
-    font-weight: 800;
-    letter-spacing: .3px;
-  }
-  .subtitle {
-    font-size: 10pt;
-    color: #333;
-    margin-top: 1mm;
-  }
+  .hdr { text-align: center; margin-bottom: 8mm; }
+  .hdr h1 { font-size: 16pt; margin: 0 0 2mm 0; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+  .hdr h2 { font-size: 15pt; margin: 0; font-weight: 800; letter-spacing: .3px; }
+  .subtitle { font-size: 10pt; color: #333; margin-top: 1mm; }
 
-  .section {
-    margin: 6mm 0 5mm;
-    border: 1px solid #cfcfcf;
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .section > .title {
-    background: #f0f3f8;
-    border-bottom: 1px solid #cfcfcf;
-    padding: 6px 10px;
-    font-weight: 700;
-    font-size: 10.5pt;
-  }
-  .block {
-    padding: 8px 10px;
-  }
+  .section { margin: 6mm 0 5mm; border: 1px solid #cfcfcf; border-radius: 6px; overflow: hidden; }
+  .section > .title { background: #f0f3f8; border-bottom: 1px solid #cfcfcf; padding: 6px 10px; font-weight: 700; font-size: 10.5pt; }
+  .block { padding: 8px 10px; }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
   .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px 12px; }
   .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px 12px; }
-  .grid-6 { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px 12px; }
-  .row { display: grid; grid-template-columns: 180px 1fr; gap: 10px; align-items: center; }
+  .row { display: grid; grid-template-columns: 220px 1fr; gap: 10px; align-items: center; }
   .row-auto { display: grid; grid-template-columns: auto 1fr; gap: 10px; align-items: center; }
   .inline { display: inline-flex; align-items: center; gap: 10px; flex-wrap: wrap; }
 
-  label {
-    font-size: 10pt;
-    color: #222;
-  }
-  input[type="text"],
-  input[type="date"],
-  input[type="number"],
-  input[type="email"],
-  input[type="tel"] {
+  label { font-size: 10pt; color: #222; }
+  input[type="text"], input[type="date"], input[type="number"], input[type="email"], input[type="tel"], textarea {
     width: 100%;
     border: 1px solid #c9c9c9;
     border-radius: 4px;
     padding: 5px 7px;
     font-size: 10pt;
   }
-  .line {
-    border-bottom: 1px dashed #999;
-    height: 22px;
-    display: inline-block;
-    min-width: 140px;
-    vertical-align: middle;
-  }
-  .muted { color: #555; font-size: 9.5pt; }
+  textarea { min-height: 64px; resize: vertical; }
   .sm { font-size: 9.5pt; }
-  .xs { font-size: 8.5pt; }
+  .xs { font-size: 8.8pt; }
   .checkline { display: flex; flex-wrap: wrap; gap: 16px; }
   .chk { display: inline-flex; align-items: center; gap: 6px; }
   .chk input { transform: translateY(1px); }
-
-  table.form {
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid #cfcfcf;
-    margin-top: 6px;
-  }
-  table.form th, table.form td {
-    border: 1px solid #cfcfcf;
-    padding: 6px;
-    vertical-align: top;
-    font-size: 10pt;
-  }
-  table.form th {
-    text-align: left;
-    background: #f7f9fc;
-    width: 230px;
-  }
-  .hint { color: #666; font-size: 9pt; margin-top: 4px; }
-
-  .footer-sign {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 16mm;
-    margin-top: 10mm;
-  }
-  .sign-line {
-    border-top: 1px solid #000;
-    margin-top: 18mm;
-    text-align: center;
-    padding-top: 2mm;
-    font-size: 10pt;
-  }
+  table.form { width: 100%; border-collapse: collapse; border: 1px solid #cfcfcf; margin-top: 6px; }
+  table.form th, table.form td { border: 1px solid #cfcfcf; padding: 6px; vertical-align: top; font-size: 10pt; }
+  table.form th { text-align: left; background: #f7f9fc; width: 260px; }
+  .footer-sign { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16mm; margin-top: 10mm; }
+  .sign-line { border-top: 1px solid #000; margin-top: 18mm; text-align: center; padding-top: 2mm; font-size: 10pt; }
   .caption { text-align: center; font-size: 9.5pt; color: #333; margin-top: 2mm; }
-
-  /* Pequeñas ayudas para cuadrículas y líneas */
-  .w-70 { width: 70px; }
-  .w-90 { width: 90px; }
-  .w-120 { width: 120px; }
-  .w-160 { width: 160px; }
-  .gap-6 { gap: 6px; }
-  .gap-8 { gap: 8px; }
-  .gap-12 { gap: 12px; }
 </style>
 </head>
 <body>
 <div class="sheet">
-
   <header class="hdr">
     <h1>COMPLEJO EDUCATIVO CANTÓN SAN ISIDRO</h1>
     <h2>FICHA DE MATRÍCULA 2026</h2>
@@ -163,10 +79,10 @@ html_content = r"""<!DOCTYPE html>
   <section class="section">
     <div class="title">1. DATOS GENERALES DEL CENTRO EDUCATIVO</div>
     <div class="block grid-3">
-      <div class="row"><label>Código Infraestructura:</label><span class="line"></span></div>
-      <div class="row"><label>Sede Educativa:</label><span class="line"></span></div>
-      <div class="row"><label>Departamento:</label><span class="line"></span></div>
-      <div class="row"><label>Distrito:</label><span class="line"></span></div>
+      <div class="row"><label>Código Infraestructura:</label><input type="text" placeholder=""></div>
+      <div class="row"><label>Sede Educativa:</label><input type="text"></div>
+      <div class="row"><label>Departamento:</label><input type="text"></div>
+      <div class="row"><label>Distrito:</label><input type="text"></div>
     </div>
   </section>
 
@@ -175,21 +91,21 @@ html_content = r"""<!DOCTYPE html>
     <div class="title">2. DATOS DEL ESTUDIANTE Y RESPONSABLE</div>
     <div class="block">
       <div class="grid-3">
-        <div class="row"><label>NIE:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Nombres:</label><span class="line"></span></div>
-        <div class="row"><label>Apellidos:</label><span class="line"></span></div>
+        <div class="row"><label>NIE:</label><input type="text" inputmode="numeric"></div>
+        <div class="row"><label>Nombres:</label><input type="text"></div>
+        <div class="row"><label>Apellidos:</label><input type="text"></div>
       </div>
 
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>Fecha de nacimiento (dd/mm/aaaa):</label><span class="line w-120"></span></div>
-        <div class="row"><label>Edad:</label><span class="line w-70"></span></div>
+        <div class="row"><label>Fecha de nacimiento:</label><input type="date"></div>
+        <div class="row"><label>Edad:</label><input type="number" min="0"></div>
         <div class="row"><label>Sexo:</label>
           <span class="inline sm">
             <label class="chk"><input type="checkbox"> F</label>
             <label class="chk"><input type="checkbox"> M</label>
           </span>
         </div>
-        <div class="row"><label>Nacionalidad:</label><span class="line"></span></div>
+        <div class="row"><label>Nacionalidad:</label><input type="text"></div>
       </div>
 
       <div class="grid-3" style="margin-top:6px;">
@@ -199,12 +115,12 @@ html_content = r"""<!DOCTYPE html>
             <label class="chk"><input type="checkbox"> No</label>
           </span>
         </div>
-        <div class="row"><label>Dirección de Residencia:</label><span class="line"></span></div>
-        <div class="row"><label>Distrito:</label><span class="line"></span></div>
+        <div class="row"><label>Dirección de Residencia:</label><input type="text"></div>
+        <div class="row"><label>Distrito:</label><input type="text"></div>
       </div>
       <div class="grid-2" style="margin-top:6px;">
-        <div class="row"><label>Departamento:</label><span class="line"></span></div>
-        <div class="row"><label>Último grado cursado (coloque número):</label><span class="line"></span></div>
+        <div class="row"><label>Departamento:</label><input type="text"></div>
+        <div class="row"><label>Último grado cursado (número):</label><input type="text"></div>
       </div>
 
       <div class="grid-4" style="margin-top:6px;">
@@ -237,23 +153,23 @@ html_content = r"""<!DOCTYPE html>
         Información de la madre
       </div>
       <div class="grid-3">
-        <div class="row"><label>Nombres de la madre:</label><span class="line"></span></div>
-        <div class="row"><label>Apellidos:</label><span class="line"></span></div>
-        <div class="row"><label>Fecha de nacimiento (dd/mm/aaaa):</label><span class="line w-120"></span></div>
+        <div class="row"><label>Nombres de la madre:</label><input type="text"></div>
+        <div class="row"><label>Apellidos:</label><input type="text"></div>
+        <div class="row"><label>Fecha de nacimiento:</label><input type="date"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>Edad:</label><span class="line w-70"></span></div>
-        <div class="row"><label>DUI:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Teléfono:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Correo electrónico:</label><span class="line"></span></div>
+        <div class="row"><label>Edad:</label><input type="number" min="0"></div>
+        <div class="row"><label>DUI:</label><input type="text"></div>
+        <div class="row"><label>Teléfono:</label><input type="tel"></div>
+        <div class="row"><label>Correo electrónico:</label><input type="email"></div>
       </div>
       <div class="grid-3" style="margin-top:6px;">
-        <div class="row"><label>Dirección de residencia:</label><span class="line"></span></div>
-        <div class="row"><label>Municipio:</label><span class="line"></span></div>
-        <div class="row"><label>Departamento:</label><span class="line"></span></div>
+        <div class="row"><label>Dirección de residencia:</label><input type="text"></div>
+        <div class="row"><label>Municipio:</label><input type="text"></div>
+        <div class="row"><label>Departamento:</label><input type="text"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>País:</label><span class="line"></span></div>
+        <div class="row"><label>País:</label><input type="text"></div>
         <div class="row"><label>¿Tiene WhatsApp?</label>
           <span class="inline sm">
             <label class="chk"><input type="checkbox"> Sí</label>
@@ -266,12 +182,12 @@ html_content = r"""<!DOCTYPE html>
             <label class="chk"><input type="checkbox"> No</label>
           </span>
         </div>
-        <div class="row"><label>Centro de estudio:</label><span class="line"></span></div>
+        <div class="row"><label>Centro de estudio:</label><input type="text"></div>
       </div>
       <div class="grid-3" style="margin-top:6px;">
-        <div class="row"><label>Último grado cursado o que cursa (número):</label><span class="line"></span></div>
-        <div class="row"><label>Ocupación:</label><span class="line"></span></div>
-        <div class="row"><label>Lugar de trabajo:</label><span class="line"></span></div>
+        <div class="row"><label>Último grado cursado o que cursa (número):</label><input type="text"></div>
+        <div class="row"><label>Ocupación:</label><input type="text"></div>
+        <div class="row"><label>Lugar de trabajo:</label><input type="text"></div>
       </div>
     </div>
 
@@ -280,23 +196,23 @@ html_content = r"""<!DOCTYPE html>
         Información del padre
       </div>
       <div class="grid-3">
-        <div class="row"><label>Nombres del padre:</label><span class="line"></span></div>
-        <div class="row"><label>Apellidos:</label><span class="line"></span></div>
-        <div class="row"><label>Fecha de nacimiento (dd/mm/aaaa):</label><span class="line w-120"></span></div>
+        <div class="row"><label>Nombres del padre:</label><input type="text"></div>
+        <div class="row"><label>Apellidos:</label><input type="text"></div>
+        <div class="row"><label>Fecha de nacimiento:</label><input type="date"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>Edad:</label><span class="line w-70"></span></div>
-        <div class="row"><label>DUI:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Teléfono:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Correo electrónico:</label><span class="line"></span></div>
+        <div class="row"><label>Edad:</label><input type="number" min="0"></div>
+        <div class="row"><label>DUI:</label><input type="text"></div>
+        <div class="row"><label>Teléfono:</label><input type="tel"></div>
+        <div class="row"><label>Correo electrónico:</label><input type="email"></div>
       </div>
       <div class="grid-3" style="margin-top:6px;">
-        <div class="row"><label>Dirección de residencia:</label><span class="line"></span></div>
-        <div class="row"><label>Municipio:</label><span class="line"></span></div>
-        <div class="row"><label>Departamento:</label><span class="line"></span></div>
+        <div class="row"><label>Dirección de residencia:</label><input type="text"></div>
+        <div class="row"><label>Municipio:</label><input type="text"></div>
+        <div class="row"><label>Departamento:</label><input type="text"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>País:</label><span class="line"></span></div>
+        <div class="row"><label>País:</label><input type="text"></div>
         <div class="row"><label>¿Tiene WhatsApp?</label>
           <span class="inline sm">
             <label class="chk"><input type="checkbox"> Sí</label>
@@ -309,12 +225,12 @@ html_content = r"""<!DOCTYPE html>
             <label class="chk"><input type="checkbox"> No</label>
           </span>
         </div>
-        <div class="row"><label>Centro de estudio:</label><span class="line"></span></div>
+        <div class="row"><label>Centro de estudio:</label><input type="text"></div>
       </div>
       <div class="grid-3" style="margin-top:6px;">
-        <div class="row"><label>Último grado cursado o que cursa (número):</label><span class="line"></span></div>
-        <div class="row"><label>Ocupación:</label><span class="line"></span></div>
-        <div class="row"><label>Lugar de trabajo:</label><span class="line"></span></div>
+        <div class="row"><label>Último grado cursado o que cursa (número):</label><input type="text"></div>
+        <div class="row"><label>Ocupación:</label><input type="text"></div>
+        <div class="row"><label>Lugar de trabajo:</label><input type="text"></div>
       </div>
     </div>
 
@@ -323,34 +239,34 @@ html_content = r"""<!DOCTYPE html>
         Responsable (si es diferente de madre o padre)
       </div>
       <div class="grid-3">
-        <div class="row"><label>Nombres:</label><span class="line"></span></div>
-        <div class="row"><label>Apellidos:</label><span class="line"></span></div>
-        <div class="row"><label>Fecha de nacimiento (dd/mm/aaaa):</label><span class="line w-120"></span></div>
+        <div class="row"><label>Nombres:</label><input type="text"></div>
+        <div class="row"><label>Apellidos:</label><input type="text"></div>
+        <div class="row"><label>Fecha de nacimiento:</label><input type="date"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>Edad:</label><span class="line w-70"></span></div>
-        <div class="row"><label>DUI:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Teléfono:</label><span class="line w-160"></span></div>
-        <div class="row"><label>Correo electrónico:</label><span class="line"></span></div>
+        <div class="row"><label>Edad:</label><input type="number" min="0"></div>
+        <div class="row"><label>DUI:</label><input type="text"></div>
+        <div class="row"><label>Teléfono:</label><input type="tel"></div>
+        <div class="row"><label>Correo electrónico:</label><input type="email"></div>
       </div>
       <div class="grid-3" style="margin-top:6px;">
-        <div class="row"><label>Dirección de residencia:</label><span class="line"></span></div>
-        <div class="row"><label>Municipio:</label><span class="line"></span></div>
-        <div class="row"><label>Departamento:</label><span class="line"></span></div>
+        <div class="row"><label>Dirección de residencia:</label><input type="text"></div>
+        <div class="row"><label>Municipio:</label><input type="text"></div>
+        <div class="row"><label>Departamento:</label><input type="text"></div>
       </div>
       <div class="grid-4" style="margin-top:6px;">
-        <div class="row"><label>País:</label><span class="line"></span></div>
+        <div class="row"><label>País:</label><input type="text"></div>
         <div class="row"><label>¿Tiene WhatsApp?</label>
           <span class="inline sm">
             <label class="chk"><input type="checkbox"> Sí</label>
             <label class="chk"><input type="checkbox"> No</label>
           </span>
         </div>
-        <div class="row"><label>Último grado cursado o que cursa (número):</label><span class="line"></span></div>
-        <div class="row"><label>Ocupación:</label><span class="line"></span></div>
+        <div class="row"><label>Último grado cursado o que cursa (número):</label><input type="text"></div>
+        <div class="row"><label>Ocupación:</label><input type="text"></div>
       </div>
       <div class="grid-2" style="margin-top:6px;">
-        <div class="row"><label>Lugar de trabajo:</label><span class="line"></span></div>
+        <div class="row"><label>Lugar de trabajo:</label><input type="text"></div>
       </div>
     </div>
   </section>
@@ -375,7 +291,6 @@ html_content = r"""<!DOCTYPE html>
         <label class="chk"><input type="checkbox"> 11. Multidiscapacidad</label>
         <label class="chk"><input type="checkbox"> 12. Otros</label>
       </div>
-      <div class="hint xs">Nota: Hipoacusia = baja audición. Discapacidad intelectual = limitaciones significativas en funcionamiento intelectual. Trastorno del espectro autista = trastornos del desarrollo que afectan la comunicación y el comportamiento. Multidiscapacidad = más de un tipo de discapacidad.</div>
 
       <div class="grid-3" style="margin-top:8px;">
         <div class="row"><label>¿Posee diagnóstico clínico?</label>
@@ -471,7 +386,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Materiales de desecho</label>
               <label class="chk"><input type="checkbox"> Adobe</label>
               <label class="chk"><input type="checkbox"> Lámina metálica en mal estado</label>
-              <label class="chk"><input type="checkbox"> Otros:</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otros</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -484,7 +399,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Ladrillo de cemento</label>
               <label class="chk"><input type="checkbox"> Tierra</label>
               <label class="chk"><input type="checkbox"> Ladrillo de barro</label>
-              <label class="chk"><input type="checkbox"> Otros materiales:</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otros</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -500,7 +415,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Paja o palma</label>
               <label class="chk"><input type="checkbox"> Lámina de asbesto o fibra cemento (duralita)</label>
               <label class="chk"><input type="checkbox"> No tiene techo</label>
-              <label class="chk"><input type="checkbox"> Otra materia</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otra materia</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -514,7 +429,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Panel solar</label>
               <label class="chk"><input type="checkbox"> Lámpara Coleman</label>
               <label class="chk"><input type="checkbox"> Generador eléctrico del vecino</label>
-              <label class="chk"><input type="checkbox"> Otra clase:</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otra clase</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -533,7 +448,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> 9. Ojo de agua</label>
               <label class="chk"><input type="checkbox"> 10. Manantial</label>
               <label class="chk"><input type="checkbox"> 11. Agua lluvia</label>
-              <label class="chk"><input type="checkbox"> 12. Otro</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> 12. Otro</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -547,7 +462,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Inodoro de fosa séptica</label>
               <label class="chk"><input type="checkbox"> Letrina de hoyo seco</label>
               <label class="chk"><input type="checkbox"> No aplica (N/A)</label>
-              <label class="chk"><input type="checkbox"> Otro</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otro</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -561,7 +476,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Televisión</label>
               <label class="chk"><input type="checkbox"> Radio</label>
               <label class="chk"><input type="checkbox"> Correo electrónico</label>
-              <label class="chk"><input type="checkbox"> Otros</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otros</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -575,7 +490,7 @@ html_content = r"""<!DOCTYPE html>
               <label class="chk"><input type="checkbox"> Instagram</label>
               <label class="chk"><input type="checkbox"> Telegram</label>
               <label class="chk"><input type="checkbox"> Twitter</label>
-              <label class="chk"><input type="checkbox"> Otro</label> <span class="line w-160"></span>
+              <label class="chk"><input type="checkbox"> Otro</label> <input type="text" style="width:180px;">
             </div>
           </td>
         </tr>
@@ -594,7 +509,7 @@ html_content = r"""<!DOCTYPE html>
             <label class="chk"><input type="checkbox"> No</label>
           </span>
         </div>
-        <div class="row"><label>¿Cuánto tiempo (meses)?</label><span class="line w-90"></span></div>
+        <div class="row"><label>¿Cuánto tiempo (meses)?</label><input type="number" min="0"></div>
         <div class="row"><label>¿Cambios que afecten su alimentación?</label>
           <span class="inline sm">
             <label class="chk"><input type="checkbox"> Sí</label>
@@ -602,7 +517,7 @@ html_content = r"""<!DOCTYPE html>
           </span>
         </div>
       </div>
-      <div class="row" style="margin-top:6px;"><label>¿Cuál?</label><span class="line"></span></div>
+      <div class="row" style="margin-top:6px;"><label>¿Cuál?</label><input type="text"></div>
 
       <div class="row" style="margin-top:8px;"><label>Alimentos que consume:</label></div>
       <div class="checkline xs" style="margin-top:4px;">
@@ -617,7 +532,7 @@ html_content = r"""<!DOCTYPE html>
         <label class="chk"><input type="checkbox"> Huevos</label>
         <label class="chk"><input type="checkbox"> Cerdo</label>
         <label class="chk"><input type="checkbox"> Pescado</label>
-        <label class="chk"><input type="checkbox"> Otros</label> <span class="line w-160"></span>
+        <label class="chk"><input type="checkbox"> Otros</label> <input type="text" style="width:180px;">
       </div>
 
       <div class="grid-3" style="margin-top:8px;">
@@ -643,8 +558,8 @@ html_content = r"""<!DOCTYPE html>
           </span>
         </div>
       </div>
-      <div class="row" style="margin-top:6px;"><label>Si respondió sí, ¿a cuál(es)?</label><span class="line"></span></div>
-      <div class="row" style="margin-top:6px;"><label>Alimentos que prefiere:</label><span class="line"></span></div>
+      <div class="row" style="margin-top:6px;"><label>Si respondió sí, ¿a cuál(es)?</label><input type="text"></div>
+      <div class="row" style="margin-top:6px;"><label>Alimentos que prefiere:</label><input type="text"></div>
     </div>
   </section>
 
@@ -662,10 +577,10 @@ html_content = r"""<!DOCTYPE html>
         <label class="chk"><input type="checkbox"> Deportivas</label>
         <label class="chk"><input type="checkbox"> Higiene y ornato</label>
       </div>
-      <div class="row" style="margin-top:8px;"><label>Observaciones:</label><span class="line" style="min-width:100%;"></span></div>
+      <div class="row" style="margin-top:8px;"><label>Observaciones:</label><textarea></textarea></div>
       <div class="grid-3" style="margin-top:8px;">
-        <div class="row"><label>Fecha de inscripción (dd/mm/aaaa):</label><span class="line w-160"></span></div>
-        <div class="row"><label>Nombre de docente:</label><span class="line"></span></div>
+        <div class="row"><label>Fecha de inscripción:</label><input type="date"></div>
+        <div class="row"><label>Nombre de docente:</label><input type="text"></div>
       </div>
 
       <div class="footer-sign">
@@ -683,13 +598,16 @@ html_content = r"""<!DOCTYPE html>
     </div>
   </section>
 
-  <div class="xs muted">Versión web – Ficha de matrícula y entrevista 2026 · Este formato es imprimible (A4). Si necesita ajustes de diseño, se pueden editar estilos en la cabecera del documento.</div>
+  <div class="xs" style="color:#555;">Versión web editable – Ficha de matrícula y entrevista 2026 · Imprimible (A4). Para mantener el aspecto al imprimir, use el botón de abajo o Ctrl+P.</div>
 </div>
 
-<!-- Botón para imprimir (solo en pantalla) -->
-<div class="no-print" style="text-align:center;margin:16px;">
+<!-- Botones de utilidad -->
+<div class="no-print" style="text-align:center;margin:16px; display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
   <button onclick="window.print()" style="padding:10px 14px;font-size:14px;border-radius:8px;border:1px solid #c9c9c9;cursor:pointer;background:#fff;">
     Imprimir / Guardar como PDF
+  </button>
+  <button onclick="document.querySelectorAll('input[type=text],input[type=number],input[type=date],input[type=email],input[type=tel],textarea').forEach(e=>e.value=''); document.querySelectorAll('input[type=checkbox]').forEach(e=>e.checked=false);" style="padding:10px 14px;font-size:14px;border-radius:8px;border:1px solid #c9c9c9;cursor:pointer;background:#fff;">
+    Limpiar formulario
   </button>
 </div>
 </body>
